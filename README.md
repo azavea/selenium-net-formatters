@@ -54,8 +54,17 @@ Selenium IDE Setup
 Writing Tests
 =============
 
-Using the Selenium IDE, create your browser tests like usual. When it comes
-time to export them, export the tests with the new formats:
+Using the Selenium IDE, create your browser tests like usual, with one minor tweak:
+
+1. Insert at `storeExpression` command at the very beginning of the test.
+2. Set the target of the command to the name of the web application (e.g. "/WebApplication1/")
+3. Set the value of the command to `appURL`
+4. Set the second command in the test to `open`
+5. Set the target of the `open` command to `${appURL}`
+
+These modifications will allow the BaseTest class to set the URL, which is helpful
+when integrating into the Jenkins CI. When it comes time to export your Selenium test,
+export the test with the new formats:
 
 1. In the Selenium IDE, select "Export Test Case as ..." from the File menu.
 2. Choose the format. In the example above, the format would be named "C# /
